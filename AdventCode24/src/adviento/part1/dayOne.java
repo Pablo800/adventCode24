@@ -50,6 +50,8 @@ public class dayOne {
 				}
 			}
 			
+			br.close();
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
