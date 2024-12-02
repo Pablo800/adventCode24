@@ -13,7 +13,9 @@ public class dayOne {
 
 	public static void main(String[] args) {
 		
-		String file = "src/adviento/files/file1.txt";
+		//System.out.println(System.getProperty("user.dir"));
+		
+		String file = "AdventCode24/src/adviento/files/file1.txt";
 		Map<String, ArrayList<Integer>> anotaciones = leerFichero(file);
 		
 		ArrayList<Integer> listColA = anotaciones.get("colA");
@@ -29,9 +31,28 @@ public class dayOne {
 			diferencia = diferencia += Math.abs(listColA.get(i) - listColB.get(i));
 		}
 		
-		System.out.println(diferencia);
+		System.out.println("Diferencia: "+diferencia);
+		
+		System.out.println("Similitud: "+ getSimilitud(listColA, listColB));
+	
 	}
 	
+	private static int getSimilitud(ArrayList<Integer> listColA, ArrayList<Integer> listColB) {
+		int resultado=0;
+		
+		for(int numero : listColA) {
+			int multiplicador = 0;
+			for(int numeroB : listColB) {
+				if(numero == numeroB) {
+					multiplicador++;
+				}
+			}
+			resultado += numero*multiplicador;
+		}
+		
+		return resultado;
+	}
+
 	public static Map<String, ArrayList<Integer>> leerFichero (String file){
 		
 		ArrayList<Integer> colA = new ArrayList<>();
