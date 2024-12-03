@@ -1,7 +1,6 @@
 package adviento.part2;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ public class daySecond {
                 niveles.add(Integer.parseInt(toke.nextToken()));
             }
 
-            if (esInformeSeguro(niveles)) {
+            if (esInformeSeguro(niveles) || sePuedeAsegurarEliminandoUnNivel(niveles)) {
                 seguros++;
             }
         }
@@ -63,6 +62,18 @@ public class daySecond {
         }
 
         return true; // Cumple con todas las reglas
+    }
+	
+	public static boolean sePuedeAsegurarEliminandoUnNivel(List<Integer> niveles) {
+        for (int i = 0; i < niveles.size(); i++) {
+            List<Integer> copia = new ArrayList<>(niveles); // Copia la lista original
+            copia.remove(i); // Elimina el nivel en la posición actual
+
+            if (esInformeSeguro(copia)) {
+                return true; // Si se asegura al eliminar este nivel
+            }
+        }
+        return false; // Ninguna eliminación asegura el informe
     }
 
 }
